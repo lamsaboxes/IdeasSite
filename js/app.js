@@ -823,11 +823,11 @@ function artSVG(it){
     const who = anon.checked ? 'مجهول' : nameIn.value.trim();
     const fields = { _subject: 'لمسة جديدة من ' + who, _captcha: 'false', _template: 'table', _honey: '', 'الاسم': who, 'نوع الصندوق': boxSel.value, 'الموافقة على العرض': 'نعم' };
     for (const k in fields) { const i = document.createElement('input'); i.type = 'hidden'; i.name = k; i.value = fields[k]; f.appendChild(i); }
-    const fi = document.createElement('input'); fi.type = 'file'; fi.name = 'الصورة';
+    const fi = document.createElement('input'); fi.type = 'file'; fi.name = 'attachment';
     let attached = false;
     try { const dt = new DataTransfer(); dt.items.add(file); fi.files = dt.files; attached = fi.files.length === 1; } catch (x) {}
     let moved = null;
-    if (!attached && fileIn.files.length && fileIn.files[0] === picked) { moved = fileIn; fileIn.name = 'الصورة'; f.appendChild(fileIn); attached = true; } // متصفحات قديمة
+    if (!attached && fileIn.files.length && fileIn.files[0] === picked) { moved = fileIn; fileIn.name = 'attachment'; f.appendChild(fileIn); attached = true; } // متصفحات قديمة
     if (!attached) { send.disabled = false; send.textContent = 'أرسل لمستك'; return showErr('متصفحك ما يدعم إرفاق الصورة بالسحب. اضغط على المربع واختر الصورة من جهازك.'); }
     if (!moved) f.appendChild(fi);
     document.body.appendChild(f);
